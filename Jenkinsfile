@@ -7,9 +7,13 @@ node('appserver')
         checkout scm
     }
 
-    stage("Snyk Security testing")
+    stage("Snyk SCA SAST testing")
     {
-        echo 'Snyk!'
+        snykSecurity(
+            snykInstallation: 'Snyk',
+            snykTokenId: 'snyk_id',
+            severity: 'critical'
+        )
     }
 
     stage("Build-and-Tag")
