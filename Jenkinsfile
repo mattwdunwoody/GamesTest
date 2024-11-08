@@ -16,6 +16,27 @@ node('appserver')
         )
     }
 
+    stage("SonarQube-Analysis")
+    {
+        agent
+        {
+            label 'appserver'
+        }
+        steps
+        {
+            script
+            {
+                def scannerHome = tool 'SonarQubeScanner'
+                withSonarQubeEnv('SonarQube')
+                {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=gameapp \
+                    --Dsonar.sources=."
+                }
+            }
+        }
+    }
+
     stage("Build-and-Tag")
     {
         app = docker.build('widmatg/snake-game-img')
