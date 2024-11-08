@@ -18,17 +18,13 @@ node('appserver')
 
     stage("SonarQube-Analysis")
     {
-        agent
-        {
+        agent {
             label 'appserver'
         }
-        steps
-        {
-            script
-            {
+        steps {
+            script {
                 def scannerHome = tool 'SonarQube'
-                withSonarQubeEnv('SonarQube')
-                {
+                withSonarQubeEnv('SonarQube') {
                     sh "${scannerHome}/bin/sonar-scanner \
                     -Dsonar.projectKey=gameapp \
                     --Dsonar.sources=."
