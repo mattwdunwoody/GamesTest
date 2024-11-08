@@ -57,7 +57,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credentials') {
                         def app = docker.image("widmatg/snake-game-img")
                         app.push("latest")
                     }
