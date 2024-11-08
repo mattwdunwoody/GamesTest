@@ -26,7 +26,7 @@ node('appserver')
         {
             script
             {
-                def scannerHome = tool 'SonarQubeScanner'
+                def scannerHome = tool 'SonarQube'
                 withSonarQubeEnv('SonarQube')
                 {
                     sh "${scannerHome}/bin/sonar-scanner \
