@@ -29,7 +29,7 @@ pipeline {
             }
             steps {
                 script {
-                    def scannerHome = tool 'SonarQube'
+                    def scannerHome = tool 'SonarQubeScanner'
                     withSonarQubeEnv('sonarqube') {
                         sh "${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=gameapp \
